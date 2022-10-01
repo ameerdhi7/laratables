@@ -76,9 +76,9 @@ class RecordsTransformer
         if ($methodName = $this->columnManager->isCustomColumn($columnName)) {
             return $this->class::$methodName($record);
         }
-
+         //calling the custom method non statically
         if ($methodName = $this->customizesColumnValue($columnName)) {
-            return $this->class::$methodName($record);
+            return $record->$methodName();      
         }
 
         if (isRelationColumn($columnName)) {
